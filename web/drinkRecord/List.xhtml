@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDrinkRecordTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDrinkRecordEmpty}" rendered="#{drinkRecordController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{drinkRecordController.items.rowCount > 0}">
+                    <h:outputText value="#{drinkRecordController.pagination.pageFirstItem + 1}..#{drinkRecordController.pagination.pageLastItem + 1}/#{drinkRecordController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{drinkRecordController.previous}" value="#{bundle.Previous} #{drinkRecordController.pagination.pageSize}" rendered="#{drinkRecordController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{drinkRecordController.next}" value="#{bundle.Next} #{drinkRecordController.pagination.pageSize}" rendered="#{drinkRecordController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{drinkRecordController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDrinkRecordTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDrinkRecordTitle_volume}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.volume}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDrinkRecordTitle_consumer}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.consumer.toString}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDrinkRecordTitle_barrel}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.barrel.toString}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{drinkRecordController.prepareView}" value="#{bundle.ListDrinkRecordViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{drinkRecordController.prepareEdit}" value="#{bundle.ListDrinkRecordEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{drinkRecordController.destroy}" value="#{bundle.ListDrinkRecordDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{drinkRecordController.prepareCreate}" value="#{bundle.ListDrinkRecordCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDrinkRecordIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

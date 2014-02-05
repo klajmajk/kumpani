@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewConsumerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewConsumerLabel_id}"/>
+                    <h:outputText value="#{consumerController.selected.id}" title="#{bundle.ViewConsumerTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewConsumerLabel_name}"/>
+                    <h:outputText value="#{consumerController.selected.name}" title="#{bundle.ViewConsumerTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewConsumerLabel_credit}"/>
+                    <h:outputText value="#{consumerController.selected.credit}" title="#{bundle.ViewConsumerTitle_credit}"/>
+                    
+                    <h:dataTable value="#{consumerController.customerRecords}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                       
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDrinkRecordTitle_volume}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.volume}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDrinkRecordTitle_barrel}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.barrel.toString}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cena:"/>
+                            </f:facet>                            
+                            <h:outputText value="#{item.price}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{consumerController.destroyAndView}" value="#{bundle.ViewConsumerDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewConsumerEditLink}"/>
+                <br />
+                <h:commandLink action="#{consumerController.prepareCreate}" value="#{bundle.ViewConsumerCreateLink}" />
+                <br />
+                <h:commandLink action="#{consumerController.prepareList}" value="#{bundle.ViewConsumerShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewConsumerIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditBarrelTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditBarrelLabel_bought}" for="bought" />
+                    <h:inputText id="bought" value="#{barrelController.selected.bought}" title="#{bundle.EditBarrelTitle_bought}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditBarrelLabel_taped}" for="taped" />
+                    <h:inputText id="taped" value="#{barrelController.selected.taped}" title="#{bundle.EditBarrelTitle_taped}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditBarrelLabel_price}" for="price" />
+                    <h:inputText id="price" value="#{barrelController.selected.price}" title="#{bundle.EditBarrelTitle_price}" />
+                    <h:outputLabel value="#{bundle.EditBarrelLabel_kind}" for="kind" />
+                    <h:selectOneMenu id="kind" value="#{barrelController.selected.kind}" title="#{bundle.EditBarrelTitle_kind}" >
+                        <f:selectItems value="#{barrelKindController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditBarrelLabel_barrelState}" for="barrelState" />
+                    <h:inputText id="barrelState" value="#{barrelController.selected.barrelState}" title="#{bundle.EditBarrelTitle_barrelState}" />
+                </h:panelGrid>
+                <h:commandLink action="#{barrelController.update}" value="#{bundle.EditBarrelSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditBarrelViewLink}"/>
+                <br />
+                <h:commandLink action="#{barrelController.prepareList}" value="#{bundle.EditBarrelShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditBarrelIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

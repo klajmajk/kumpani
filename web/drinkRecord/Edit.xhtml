@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDrinkRecordTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDrinkRecordLabel_volume}" for="volume" />
+                    <h:inputText id="volume" value="#{drinkRecordController.selected.volume}" title="#{bundle.EditDrinkRecordTitle_volume}" />
+                    <h:outputLabel value="#{bundle.EditDrinkRecordLabel_consumer}" for="consumer" />
+                    <h:selectOneMenu id="consumer" value="#{drinkRecordController.selected.consumer}" title="#{bundle.EditDrinkRecordTitle_consumer}" >
+                        <f:selectItems value="#{consumerController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDrinkRecordLabel_barrel}" for="barrel" />
+                    <h:selectOneMenu id="barrel" value="#{drinkRecordController.selected.barrel}" title="#{bundle.EditDrinkRecordTitle_barrel}" >
+                        <f:selectItems value="#{barrelController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{drinkRecordController.update}" value="#{bundle.EditDrinkRecordSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDrinkRecordViewLink}"/>
+                <br />
+                <h:commandLink action="#{drinkRecordController.prepareList}" value="#{bundle.EditDrinkRecordShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDrinkRecordIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

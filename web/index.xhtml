@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body>
+        Naraženo: #{activeBarrelController.activeBarrel}
+        <h:form>
+            <h:commandButton value="Dopito" action="#{activeBarrelController.finishBarrel()}" />
+        </h:form>
+        <br />
+        <br />
+        <h:link outcome="/barrel/List" value="Show All Barrel Items"/>
+        <br />
+        <h:link outcome="/barrelKind/List" value="Show All BarrelKind Items"/>
+        <br />
+        <h:link outcome="/consumer/List" value="Show All Consumer Items"/>
+        <br />
+        <h:link outcome="/drinkRecord/List" value="Show All DrinkRecord Items"/>
+        <br />
+        <h:link outcome="/tap" value="Narazit sud"/>
+        <br />
+        <h:link outcome="welcomeRichfaces" value="Richfaces welcome page" />
+    </h:body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
+
